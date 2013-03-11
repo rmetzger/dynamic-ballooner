@@ -25,19 +25,20 @@ void update_m_info() {
 		<< " Free: " << m_info.mb_free << endl;
 }
 
-void debug_queue(queue<int>* q) {
-	queue<int>* n = new queue<int>;
+template <typename T>
+void debug_queue(const queue<T>* q) {
+	queue<T>* n = new queue<T>(*q);
 
 	int len = q->size();
 	cout << "Len=" << len << endl;
-	int i = 0;
-	while(!q->empty()) {
-		int f = q->front();
-		cout << "Element " << i++ << " value " << f << endl;
-		n->push(f);
-		q->pop();
+	for(int i = 0; i < len; ++i) {
+		T f = n->front();
+		cout << "Element " << i << " value " << f << endl;
+		n->pop();
 	}
 }
+
+
 
 // some learning
 void devel() {
@@ -55,8 +56,9 @@ void devel() {
 
 int main(int argc, char* argv[])
 {
-	devel();
-	return 0;
+	// devel();
+	// return 0;
+
 	// info from /proc/meminfo
 	m_info.mb_cached = 0;
 	m_info.mb_buffers = 0;
@@ -64,7 +66,7 @@ int main(int argc, char* argv[])
 	// the amount of mem the user wants for the cache.
 	int desiredCacheSize = -1;
 
-	queue<void*> allocated_memory;
+	queue<void*>*  allocated_memory = new queue<void*>;
 
 
 	if(argc <= 1) {
@@ -93,10 +95,12 @@ int main(int argc, char* argv[])
 				void * buffer =  malloc ( amount );
 				cout << "buffer?? " << buffer << endl;
 				memset(buffer, set++, amount);
-				allocated_memory.push(buffer);
+				allocated_memory->push(buffer);
+				cout << "Debugging queue" << endl;
+				debug_queue(allocated_memory);
 			} else {
 				// free up again.
-				void* somemem = allocated_memory.back();
+				void* somemem = allocated_memory->back();
 				if(somemem != NULL) {
 					free(somemem);
 				} else {
