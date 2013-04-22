@@ -1,5 +1,5 @@
 CC		=	g++
-CFLAGS	=	-ggdb -lprocps -Wall 
+CFLAGS	=	-O3 -march=native -lprocps -Wall 
 
 all: ballooner
 	

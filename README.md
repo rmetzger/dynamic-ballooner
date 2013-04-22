@@ -9,6 +9,17 @@ Dependencies
 -------------------------
  * procps
  * Linux Operating system
+ * make, gcc and alike
+
+Usage
+-------------------------
+        ./allocator <Desired Amount Of Free Memory>
+
+
+Building
+-------------------------
+		git clone https://github.com/rmetzger/dynamic-ballooner.git
+        make
 
 
 License
