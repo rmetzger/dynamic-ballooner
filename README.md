@@ -18,8 +18,9 @@ Usage
 
 Building
 -------------------------
-		git clone https://github.com/rmetzger/dynamic-ballooner.git
-        make
+	git clone https://github.com/rmetzger/dynamic-ballooner.git
+	cd dynamic-ballooner
+	make
 
 
 License
