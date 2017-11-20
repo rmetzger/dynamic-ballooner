@@ -10,4 +10,4 @@ run: all
 	./ballooner 500
 
 ballooner : main.cpp
-	$(CC) $(CFLAGS)   -o $@ $<
+	$(CC) $< $(CFLAGS) -o $@
